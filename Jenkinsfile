@@ -2,8 +2,8 @@ pipeline {
   agent any
 	
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker-hub-cred')
-    REMOTE_SERVER = '52.73.28.146'
+    DOCKERHUB_CREDENTIALS = credentials('77435993-feec-4be4-a03b-05b5a178f1ab')
+    REMOTE_SERVER = '13.36.166.91'
     REMOTE_USER = 'ec2-user' 	  	  
   }
 	
@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('checkout') {
       steps {
-        git branch: 'main', url: 'https://github.com/palakbhawsar98/JavaWebApp'
+        git branch: 'main', url: 'https://github.com/amiraBenamer20/JavaWebAPP'
 
       }
     }
@@ -47,7 +47,7 @@ pipeline {
 
       steps {
         sh 'docker build -t javawebapp:latest .'
-        sh 'docker tag javawebapp palakbhawsar/javawebapp:latest'
+        sh 'docker tag javawebapp amiraBenamer20/javawebapp:latest'
       }
     }
 	  
@@ -63,7 +63,7 @@ pipeline {
 	  
     stage('Push Image to dockerHUb') {
       steps {
-        sh 'docker push palakbhawsar/javawebapp:latest'
+        sh 'docker push amirafr/javawebapp:latest'
       }
       post {
         always {
