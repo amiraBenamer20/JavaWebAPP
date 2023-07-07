@@ -2,8 +2,9 @@ pipeline {
   agent any
 	
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('77435993-feec-4be4-a03b-05b5a178f1ab')
-    REMOTE_SERVER = '13.36.166.91'
+    DOCKERHUB_CREDENTIALS_USR = credentials('docker-hub-cred')
+    DOCKERHUB_PASSWORD = "dckr_pat_a3zVN-bB4nbpc--oN7i02JioKdA"
+    REMOTE_SERVER = '13.38.83.116'
     REMOTE_USER = 'ec2-user' 	  	  
   }
 	
@@ -47,7 +48,7 @@ pipeline {
 
       steps {
         sh 'docker build -t javawebapp:latest .'
-        sh 'docker tag javawebapp amiraBenamer20/javawebapp:latest'
+        sh 'docker tag javawebapp amirafr/javawebapp:latest'
       }
     }
 	  
@@ -55,7 +56,7 @@ pipeline {
 	  
     stage('Login to DockerHub') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u    $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u ="$DOCKERHUB_CREDENTIALS_USR" -p="$DOCKERHUB_PASSWORD"
       }
     }
 	  
