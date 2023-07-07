@@ -4,7 +4,7 @@ pipeline {
   environment {
     DOCKERHUB_CREDENTIALS_USR = credentials('docker-hub-cred')
     DOCKERHUB_PASSWORD = "dckr_pat_a3zVN-bB4nbpc--oN7i02JioKdA"
-    REMOTE_SERVER = '13.38.83.116'
+    REMOTE_SERVER = '52.47.163.169'
     REMOTE_USER = 'ec2-user' 	  	  
   }
 	
