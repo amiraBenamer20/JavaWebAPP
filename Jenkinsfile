@@ -3,7 +3,6 @@ pipeline {
 	
   environment {
     DOCKERHUB_CREDENTIALS_USR = credentials('docker-hub-cred')
-    DOCKERHUB_PASSWORD = "dckr_pat_a3zVN-bB4nbpc--oN7i02JioKdA"
     REMOTE_SERVER = '52.47.163.169'
     REMOTE_USER = 'ubuntu' 	  	  
   }
@@ -53,13 +52,14 @@ pipeline {
     }
 	  
    // Login to DockerHub before pushing docker Image
+   
+    stage('Login to Docker Hub') {      	
+    steps{                       	
+	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --	password-stdin'                		
+	echo 'Login Completed'      
+	    }           
+	} 
 	  
-    stage('Login to DockerHub') {
-      steps {
-        sh 'echo ${DOCKERHUB_PASSWORD} | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin'
-
-      }
-    }
 	  
    // Push image to DockerHub registry
 	  
